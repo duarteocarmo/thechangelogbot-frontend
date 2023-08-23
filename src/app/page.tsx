@@ -35,21 +35,13 @@ export default function Home() {
         accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: "",
-    };
-
-    if (podcastName === allPodcastsFilterValue) {
-      options.body = JSON.stringify({
-        query: inputValue,
-      });
-    } else {
-      options.body = JSON.stringify({
+      body: JSON.stringify({
         query: inputValue,
         filters: {
           podcast: podcastName || allPodcastsFilterValue,
         },
-      });
-    }
+      }),
+    };
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/search`, options)
       .then((response) => response.json())
