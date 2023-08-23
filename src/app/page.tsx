@@ -54,7 +54,7 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center justify-between pb-40">
       <Header />
-      <div className="flex w-full items-center justify-center pt-16">
+      <div className="flex w-full items-center justify-center pt-4">
         <form method="post" onSubmit={handleSubmit} className="w-3/4">
           <div className="relative bg-slate-800 rounded">
             <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-emerald-400">
