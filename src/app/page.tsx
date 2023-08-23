@@ -1,35 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import Image from "next/image";
-
-type Podcast = {
-  podcast_name: string;
-  episode_number: number;
-  text: string;
-  speaker: string;
-  id: string;
-  num_words: number;
-  embedding: null;
-};
-
-function PodcastItem({ podcast }: { podcast: Podcast }) {
-  const displayedText = podcast.text; // .slice(0, 420).trim() + "...";
-  return (
-    <>
-      <a
-        href={`https://changelog.com/${podcast.podcast_name}/${podcast.episode_number}`}
-        target="_blank"
-        className="bg-gray-50 w-3/4 mt-10 rounded p-4 leading-loose"
-      >
-        <h2 className="text-xl font-bold">
-          {podcast.podcast_name} #{podcast.episode_number}
-        </h2>
-        <div className="text-sm font-normal">{podcast.speaker}</div>
-        <div className="text-xs font-light pt-2">{displayedText}</div>
-      </a>
-    </>
-  );
-}
+import Header from "@/components/HeaderView";
+import PodcastItem from "@/components/PodcastItem";
 
 export default function Home() {
   const allPodcastsFilterValue = "all";
@@ -38,7 +10,7 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch("http://localhost:8000/podcasts");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/podcasts`);
       const data: string[] = await res.json();
       setOptions((prevOptions) => [...prevOptions, ...data]);
     }
@@ -74,34 +46,22 @@ export default function Home() {
       options.body = JSON.stringify({
         query: inputValue,
         filters: {
-          podcast_name: podcastName || allPodcastsFilterValue,
+          podcast: podcastName || allPodcastsFilterValue,
         },
       });
     }
 
-    fetch("http://localhost:8000/search", options)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/search`, options)
       .then((response) => response.json())
       .then((responseData) => {
-        setData(responseData); // Update the data state with received data
+        setData(responseData);
       })
       .catch((err) => console.error(err));
   }
 
   return (
     <main className="flex flex-col items-center justify-between pb-40">
-      <div className="absolute top-5 hidden w-full justify-between px-5 sm:flex">
-        <div>
-          <a href="/">
-            <Image
-              src="https://raw.githubusercontent.com/thechangelog/changelog.com/master/assets/static/images/brand/changelog-mark-dark.svg"
-              width={30}
-              height={30}
-              alt="logo"
-            />
-          </a>
-        </div>
-        <div></div>
-      </div>
+      <Header />
       <div className="flex w-full items-center justify-center pt-16">
         <form method="post" onSubmit={handleSubmit} className="w-3/4">
           <div className="relative bg-slate-800 rounded">
@@ -139,7 +99,7 @@ export default function Home() {
       </div>
 
       {data.map((item: Podcast) => (
-        <PodcastItem podcast={item} key={item.id} />
+        <PodcastItem podcast={item} key={item._hash} />
       ))}
     </main>
   );
