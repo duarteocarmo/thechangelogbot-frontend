@@ -1,22 +1,26 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "@/components/HeaderView";
 import PodcastItem from "@/components/PodcastItem";
+import useSWR from "swr";
 
 export default function Home() {
   const allPodcastsFilterValue = "all";
   const [data, setData] = useState<Podcast[]>([]);
-  const [options, setOptions] = useState<string[]>([allPodcastsFilterValue]);
 
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/podcasts`);
-      const data: string[] = await res.json();
-      setOptions((prevOptions) => [...prevOptions, ...data]);
-    }
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  const { data: optionsData, error } = useSWR(
+    `${process.env.NEXT_PUBLIC_API_URL}/podcasts`,
+    fetcher,
+    { dedupingInterval: 60000 }
+  );
 
-    fetchData();
-  }, []);
+  const options = optionsData
+    ? [allPodcastsFilterValue, ...optionsData]
+    : [allPodcastsFilterValue];
+
+  if (error) return <div>Error loading data</div>;
+  if (!optionsData) return <div>Loading...</div>;
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -29,18 +33,22 @@ export default function Home() {
     const inputValue = target.searchInput.value;
     const podcastName = target.podcastName.value;
 
+
+    const requestBody: SearchRequestBody = {
+      query: inputValue
+    };
+
+    if (podcastName !== allPodcastsFilterValue) {
+      requestBody.filters = { podcast: podcastName };
+    }
+
     const options = {
       method: "POST",
       headers: {
         accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        query: inputValue,
-        filters: {
-          podcast: podcastName || allPodcastsFilterValue,
-        },
-      }),
+      body: JSON.stringify(requestBody),
     };
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/search`, options)
@@ -57,11 +65,11 @@ export default function Home() {
       <div className="flex w-full items-center justify-center pt-4">
         <form method="post" onSubmit={handleSubmit} className="w-3/4">
           <div className="relative bg-slate-800 rounded">
-            <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-emerald-400">
+            <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-changelog-green">
               {"~ $ "}
             </span>
             <input
-              className="bg-slate-800 text-emerald-400 p-4 rounded w-full tracking-wider font-light pl-16"
+              className="bg-slate-800 text-changelog-green p-4 rounded w-full tracking-wider font-light pl-16"
               name="searchInput"
               type="text"
               placeholder={"What is test driven development?"}
