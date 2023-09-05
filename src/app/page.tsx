@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Header from "@/components/HeaderView";
+import Footer from "@/components/FooterView";
 import PodcastItem from "@/components/PodcastItem";
 import useSWR from "swr";
 
@@ -33,9 +34,8 @@ export default function Home() {
     const inputValue = target.searchInput.value;
     const podcastName = target.podcastName.value;
 
-
     const requestBody: SearchRequestBody = {
-      query: inputValue
+      query: inputValue,
     };
 
     if (podcastName !== allPodcastsFilterValue) {
@@ -101,6 +101,8 @@ export default function Home() {
       {data.map((item: Podcast) => (
         <PodcastItem podcast={item} key={item._hash} />
       ))}
+
+      <Footer />
     </main>
   );
 }

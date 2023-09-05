@@ -1,12 +1,11 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Header from "@/components/HeaderView";
-import PodcastItem from "@/components/PodcastItem";
+import Footer from "@/components/FooterView";
 import useSWR from "swr";
-import Select from "react-select";
 
 export default function Home() {
-  const speakerChoices = ["Adam Stacoviak", "Jerod Santo"];
+  const speakerChoices = ["Adam Stacoviak", "Jerod Santo", "Gerhard Lazu"];
   const defaultSpeaker =
     speakerChoices[Math.floor(Math.random() * speakerChoices.length)];
   const [data, setData] = useState<string>("");
@@ -137,7 +136,7 @@ export default function Home() {
                   className="rounded-md border border-gray-200 bg-white px-5 py-3 text-left text-sm text-gray-500 transition-all duration-75 hover:border-black hover:text-gray-700 active:bg-gray-50"
                   onClick={() => handleExampleClick(item.speaker, item.query)}
                 >
-                  Ask {item.speaker}: {item.query}
+                  Ask {item.speaker}: "{item.query}"
                 </div>
               ))}
             </div>
@@ -159,6 +158,8 @@ export default function Home() {
           <div className="font-normal">Generating response...</div>
         </div>
       )}
+
+      <Footer />
     </main>
   );
 }

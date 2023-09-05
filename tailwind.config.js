@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       colors: {
         'changelog-green': '#59b287',
+        'superduper-purple': '#6d2def'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
