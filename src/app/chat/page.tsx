@@ -20,7 +20,7 @@ export default function Home() {
       handleSubmit();
       setShouldSubmit(false); // Reset the flag after submission
     }
-  }, [shouldSubmit]);
+  }, [shouldSubmit, handleSubmit]);
 
   const examples = [
     { speaker: "Gerhard Lazu", query: "What makes good DevOps?" },
