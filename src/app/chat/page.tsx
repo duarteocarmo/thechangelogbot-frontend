@@ -136,7 +136,7 @@ export default function Home() {
                   className="rounded-md border border-gray-200 bg-white px-5 py-3 text-left text-sm text-gray-500 transition-all duration-75 hover:border-black hover:text-gray-700 active:bg-gray-50"
                   onClick={() => handleExampleClick(item.speaker, item.query)}
                 >
-                  Ask {item.speaker}: "{item.query}"
+                  Ask {item.speaker}: &quot;{item.query}&quot;
                 </div>
               ))}
             </div>
