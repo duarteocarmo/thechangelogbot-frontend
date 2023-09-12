@@ -20,7 +20,7 @@ export default function Home() {
     ? [allPodcastsFilterValue, ...optionsData]
     : [allPodcastsFilterValue];
 
-  if (error) return <div>Error: We're probably updating the database</div>;
+  if (error) return <div>Error: We are probably updating the database</div>;
   if (!optionsData) return <div>Loading...</div>;
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
