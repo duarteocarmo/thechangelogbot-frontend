@@ -2,7 +2,7 @@ import Link from "next/link";
 
 function Footer() {
   return (
-    <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-center mt-14 text-sm ">
+    <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-center mt-14 text-sm text-gray-600">
       <div className="text-center">
         By{" "}
         <a
