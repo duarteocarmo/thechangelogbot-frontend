@@ -2,10 +2,14 @@ import Link from "next/link";
 
 function Footer() {
   return (
-    <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center text-gray-500 mt-14">
-      <label className="mb-2 text-gray-900 pr-3 text-sm">
+    <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-center mt-14 text-sm ">
+      <div className="text-center">
         By{" "}
-        <a href="https://duarteocarmo.com" target="_blank">
+        <a
+          href="https://duarteocarmo.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Duarte O.Carmo
         </a>{" "}
         | Powered by{" "}
@@ -13,6 +17,7 @@ function Footer() {
           href="https://www.superduperdb.com/?ref=changelog"
           className="text-superduper-purple font-bold"
           target="_blank"
+          rel="noopener noreferrer"
         >
           SuperDuperDB
         </a>{" "}
@@ -20,10 +25,11 @@ function Footer() {
         <a
           href="https://github.com/duarteocarmo/thechangelogbot-frontend"
           target="_blank"
+          rel="noopener noreferrer"
         >
           GitHub
         </a>
-      </label>
+      </div>
     </div>
   );
 }
