@@ -41,7 +41,7 @@ export default function Home() {
   const options = optionsData ? [...optionsData] : [defaultSpeaker];
   const [speakerName, setSpeakerName] = useState<string>(options[0]);
 
-  if (error) return <div>Error loading data</div>;
+  if (error) return <div>Error: We're probably updating the database</div>;
   if (!optionsData) return <div>Loading...</div>;
 
   function handleExampleClick(speaker: string, query: string) {
