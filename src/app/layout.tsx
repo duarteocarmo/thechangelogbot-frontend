@@ -1,9 +1,19 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Head from "next/head";
-import { Roboto_Mono } from "next/font/google";
+import { Inter, Roboto_Mono } from "next/font/google";
 
-const roboto_mono = Roboto_Mono({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const roboto_mono = Roboto_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto-mono",
+});
 
 export const metadata: Metadata = {
   title: "Changelog Neural Search",
@@ -17,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${roboto_mono.variable}`}>
       <Head>
         <script
           defer
@@ -25,7 +35,7 @@ export default function RootLayout({
           src="https://plausible.io/js/script.js"
         ></script>
       </Head>
-      <body className={roboto_mono.className}>{children}</body>
+      <body className="font-mono">{children}</body>
     </html>
   );
 }
