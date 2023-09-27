@@ -44,6 +44,9 @@ dependencies:
   react-select:
     specifier: ^5.7.4
     version: 5.7.4(@types/react@18.2.18)(react-dom@18.2.0)(react@18.2.0)
+  react-show-more-text:
+    specifier: ^1.6.2
+    version: 1.6.2(react@18.2.0)
   react-textarea-autosize:
     specifier: ^8.5.3
     version: 8.5.3(@types/react@18.2.18)(react@18.2.0)
@@ -123,6 +126,14 @@ packages:
     hasBin: true
     dependencies:
       '@babel/types': 7.22.15
+    dev: false
+
+  /@babel/polyfill@7.12.1:
+    resolution: {integrity: sha512-X0pi0V6gxLi6lFZpGmeNa4zxtwEmCs42isWLNjZZDE0Y8yVfgu0T2OAHlzBbdYlqbW/YXVvoBHpATEM+goCj8g==}
+    deprecated: 🚨 This package has been deprecated in favor of separate inclusion of a polyfill and regenerator-runtime (when needed). See the @babel/polyfill docs (https://babeljs.io/docs/en/babel-polyfill) for more information.
+    dependencies:
+      core-js: 2.6.12
+      regenerator-runtime: 0.13.11
     dev: false
 
   /@babel/runtime@7.22.6:
@@ -1092,6 +1103,12 @@ packages:
 
   /convert-source-map@1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
+    dev: false
+
+  /core-js@2.6.12:
+    resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
+    deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+    requiresBuild: true
     dev: false
 
   /cosmiconfig@7.1.0:
@@ -2863,6 +2880,16 @@ packages:
       use-isomorphic-layout-effect: 1.1.2(@types/react@18.2.18)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
+    dev: false
+
+  /react-show-more-text@1.6.2(react@18.2.0):
+    resolution: {integrity: sha512-Z6tRcnEosHvo07vZw36LxCjqYq4ghgaDI273b5XcayJ1PYbT56OKbaQlPqH7W9LGF5rhUVIhEDBPURuG5eO/Uw==}
+    peerDependencies:
+      react: 16 - 18.x
+    dependencies:
+      '@babel/polyfill': 7.12.1
+      prop-types: 15.8.1
+      react: 18.2.0
     dev: false
 
   /react-textarea-autosize@8.5.3(@types/react@18.2.18)(react@18.2.0):

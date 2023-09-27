@@ -13,7 +13,7 @@ export default function Home() {
   const { data: optionsData, error } = useSWR(
     `${process.env.NEXT_PUBLIC_API_URL}/podcasts`,
     fetcher,
-    { dedupingInterval: 60000 }
+    { dedupingInterval: 60000 },
   );
 
   const options = optionsData
@@ -63,7 +63,7 @@ export default function Home() {
     <main className="flex flex-col items-center justify-between pb-40">
       <Header />
       <div className="flex w-full items-center justify-center pt-4">
-        <form method="post" onSubmit={handleSubmit} className="w-3/4">
+        <form method="post" onSubmit={handleSubmit} className="w-11/12 md:w-2/4 text-sm md:text-base">
           <div className="relative bg-slate-800 rounded">
             <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-changelog-green">
               {"~ $ "}

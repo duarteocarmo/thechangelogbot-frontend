@@ -35,7 +35,7 @@ export default function Home() {
   const { data: optionsData, error } = useSWR(
     `${process.env.NEXT_PUBLIC_API_URL}/speakers`,
     fetcher,
-    { dedupingInterval: 60000 }
+    { dedupingInterval: 60000 },
   );
 
   const options = optionsData ? [...optionsData] : [defaultSpeaker];
@@ -55,6 +55,7 @@ export default function Home() {
     if (event) event.preventDefault();
 
     setIsLoading(true);
+    setHideExamples(true);
 
     const inputValue = searchInput;
     const selectedSpeakerName = speakerName;
@@ -98,7 +99,7 @@ export default function Home() {
         <form
           method="post"
           onSubmit={handleSubmit}
-          className="w-3/4"
+          className="w-11/12 md:w-2/4 text-sm md:text-base"
           ref={formRef}
         >
           <label className="mb-2 text-gray-900 pr-3">Ask a question to </label>
@@ -129,7 +130,7 @@ export default function Home() {
           </div>
 
           {!hideExamples && (
-            <div className="flex flex-col space-y-4 border-t border-gray-200 bg-gray-50 p-7 sm:p-10">
+            <div className="flex flex-col space-y-4 border-t border-gray-200 bg-gray-50 p-7 sm:p-10 ">
               {examples.map((item, index) => (
                 <div
                   key={index}
@@ -148,13 +149,13 @@ export default function Home() {
       </div>
 
       {data && (
-        <div className="bg-gray-50 w-3/4 mt-10 rounded p-4 leading-loose">
+        <div className="bg-gray-50 w-11/12 md:w-2/4  mt-10 rounded p-4 leading-loose text-sm md:text-base">
           <div className="font-normal">{data}</div>
         </div>
       )}
 
       {isLoading && (
-        <div className="bg-gray-50 w-3/4 mt-10 rounded p-4 leading-loose">
+        <div className="bg-gray-50 w-11/12 md:w-2/4  mt-10 rounded p-4 leading-loose text:sm md:text-base">
           <div className="font-normal">Generating response...</div>
         </div>
       )}
