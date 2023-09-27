@@ -18,13 +18,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
-        <script
-          defer
-          data-domain="changelog.duarteocarmo.com"
-          src="https://plausible.io/js/script.js"
-        ></script>
-      </Head>
       <body className={roboto_mono.className}>{children}</body>
     </html>
   );
