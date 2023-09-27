@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import Head from "next/head";
 import { Roboto_Mono } from "next/font/google";
 
 const roboto_mono = Roboto_Mono({ subsets: ["latin"] });
@@ -17,6 +18,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Head>
+        <script
+          defer
+          data-domain="changelog.duarteocarmo.com"
+          src="https://plausible.io/js/script.js"
+        ></script>
+      </Head>
       <body className={roboto_mono.className}>{children}</body>
     </html>
   );
