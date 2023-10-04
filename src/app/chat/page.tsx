@@ -23,11 +23,11 @@ export default function Home() {
   }, [shouldSubmit, handleSubmit]);
 
   const examples = [
-    { speaker: "Gerhard Lazu", query: "What makes good DevOps?" },
+    { speaker: "Gerhard Lazu", query: "What is kaizen?" },
     { speaker: "Daniel Whitenack", query: "What are embeddings?" },
     {
-      speaker: "Jerod Santo",
-      query: "How to build a successful podcast platform?",
+      speaker: "Julia Evans",
+      query: "For how long have you used vim?",
     },
   ];
 
