@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import Head from "next/head";
 import { Inter, Roboto_Mono } from "next/font/google";
+import PlausibleProvider from "next-plausible";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,13 +28,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${roboto_mono.variable}`}>
-      <Head>
-        <script
-          defer
-          data-domain="changelog.duarteocarmo.com"
-          src="https://plausible.io/js/script.js"
-        ></script>
-      </Head>
+      <head>
+        <PlausibleProvider domain="changelog.duarteocarmo.com" />
+      </head>
       <body className="font-mono">{children}</body>
     </html>
   );
